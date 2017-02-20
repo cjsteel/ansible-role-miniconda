@@ -1,4 +1,32 @@
-# Byte-compiled / optimized / DLL files
+# temp files
+
+*~
+*.swp
+
+# private files
+
+.private
+.prv
+
+# misc
+
+*.save
+
+# ansible files
+
+*.retry
+.vault
+ansible.log
+
+# directories
+
+## Vagrant
+
+.vagrant
+
+# Python
+
+## Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class

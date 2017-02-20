@@ -1,38 +1,88 @@
-Role Name
-=========
+# Miniconda role for Ansible
 
-A brief description of the role goes here.
+An Ansible role for deploying and managing miniconda.
 
-Requirements
-------------
+## Variables
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+All role variables start with `miniconda_`.
 
-Role Variables
---------------
+### roles/miniconda/defaults/main.yml
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+```shell
+---
+# file: roles/miniconda/defaults/main.yml
 
-Dependencies
-------------
+## miniconda states
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+miniconda_state      : 'present' # 'present', 'absent', 'purged'
+miniconda_envs_state : 'present' # 'present', 'absent', 'purged'
 
-Example Playbook
-----------------
+## Target miniconda version
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+miniconda_platform: 'Linux-x86_64'
+miniconda_installer_sh: 'Miniconda2-4.3.11-{{ miniconda_platform }}.sh'
+miniconda_installer_sh_checksum: d573980fe3b5cdf80485add2466463f5
+miniconda_url: >
+  'https://repo.continuum.io/miniconda/{{ miniconda_installer_sh }}'
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+## directories
 
-License
--------
+miniconda_parent_dir  : '{{ ansible_env.HOME }}'
+miniconda_home        : '{{ miniconda_parent_dir }}/miniconda'
+miniconda_resource_dir: '{{ miniconda_parent_dir }}/sys/sw/miniconda'
 
-BSD
+## environments
 
-Author Information
-------------------
+### conda environment(s)
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+miniconda_add_condarc: yes
+
+miniconda_environments:
+  - name: prod
+    python_version: 2.7
+    pkgs: 'pip'
+  - name: stage
+    python_version: 3.4
+    pkgs: 'pip'
+  - name: dev
+    python_version: 3.4
+    pkgs: 'pip'
+
+### shell environment
+
+miniconda_modify_path: yes
+miniconda_rcfile: '~/.bashrc'
+
+```
+
+## ansible-playbook command example
+
+```shell
+ansible-playbook -i inventory/dev systems.yml
+```
+
+## Role development and testing
+
+### Requirements
+
+* Vagrant
+* VirtualBox
+
+### vagrant up
+
+This will run the playbook as the **vagrant** user in a virtual machine.
+
+```shell
+cd roles/minicond
+vagrant up
+```
+
+## Contributors
+- Christopher Steel ([github.com/cjsteel]( https://github.com/cjsteel )
+
+## Credits and resources
+Inspiration:
+
+- ​
+- [https://github.com/robinandeer/ansible-miniconda.git][robinandeer/ansible-miniconda]
+

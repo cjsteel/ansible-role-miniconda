@@ -1,2 +1,35 @@
 ---
-# defaults file for ansible-role-miniconda
+# file: roles/miniconda/defaults/main.yml
+
+## miniconda states
+
+miniconda_state      : 'present' # 'present', 'absent', 'purged'
+miniconda_envs_state : 'present' # 'present', 'absent', 'purged'
+
+## Target miniconda version
+
+miniconda_platform: 'Linux-x86_64'
+miniconda_installer_sh: 'Miniconda2-4.3.11-{{ miniconda_platform }}.sh'
+miniconda_installer_sh_checksum: d573980fe3b5cdf80485add2466463f5
+miniconda_url: >
+  'https://repo.continuum.io/miniconda/{{ miniconda_installer_sh }}'
+
+miniconda_parent_dir: '{{ ansible_env.HOME }}'
+miniconda_home: '{{ miniconda_parent_dir }}/miniconda'
+
+miniconda_resource_dir: '{{ miniconda_parent_dir }}/sys/sw/miniconda'
+
+miniconda_environments:
+  - name: prod
+    python_version: 2.7
+    pkgs: 'pip'
+  - name: stage
+    python_version: 3.4
+    pkgs: 'pip'
+  - name: dev
+    python_version: 3.4
+    pkgs: 'pip'
+
+miniconda_modify_path: yes
+miniconda_rcfile: '~/.bashrc'
+miniconda_add_condarc: yes

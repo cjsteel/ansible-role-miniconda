@@ -1,0 +1,6 @@
+---
+- hosts: miniconda
+  become: false
+  gather_facts: false
+  roles:
+    - miniconda
