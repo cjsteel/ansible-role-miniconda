@@ -8,8 +8,10 @@ miniconda_envs_state : 'present' # 'present', 'absent', 'purged'
 
 ## Target miniconda version
 
-miniconda_platform: 'Linux-x86_64'
-miniconda_installer_sh: 'Miniconda2-4.3.11-{{ miniconda_platform }}.sh'
+miniconda_installer_version : '4.3.11'
+miniconda_python_version    : '2'  # 2 or 3
+miniconda_platform: '{{ ansible_system }}-{{ ansible_architecture }}'   # 'Linux-x86_64'
+miniconda_installer_sh: 'Miniconda{{ miniconda_python_version }}-{{ miniconda_installer_version }}-{{ miniconda_platform }}.sh'
 miniconda_installer_sh_checksum: d573980fe3b5cdf80485add2466463f5
 miniconda_url: >
   'https://repo.continuum.io/miniconda/{{ miniconda_installer_sh }}'
