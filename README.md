@@ -52,7 +52,6 @@ miniconda_environments:
 
 miniconda_modify_path: yes
 miniconda_rcfile: '~/.bashrc'
-
 ```
 
 ## ansible-playbook command example
@@ -83,6 +82,5 @@ vagrant up
 ## Credits and resources
 Inspiration:
 
-- ​
-- [https://github.com/robinandeer/ansible-miniconda.git][robinandeer/ansible-miniconda]
+- [robinandeer/ansible-miniconda](https://github.com/robinandeer/ansible-miniconda.git)
 
