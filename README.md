@@ -2,6 +2,10 @@
 
 An Ansible role for deploying and managing miniconda.
 
+## Description
+
+By default this role installs miniconda to the deploy users home directory and creates one or more conda based Python environements.
+
 ## Variables
 
 All role variables start with `miniconda_`.
@@ -62,10 +66,28 @@ ansible-playbook -i inventory/dev systems.yml
 
 ## Role development and testing
 
-### Requirements
+### Supplimental software
 
+* conda (via miniconda)
+* a conda created Python Ansible environment
 * Vagrant
 * VirtualBox
+
+### activate (conda) python environment
+
+Example of a command prompt with no active conda environments.
+
+```shell
+user01@workstation-001:~$
+```
+```shell
+source activate ansible
+```
+Example of command prompt with an active conda environment called "ansible"
+
+```shell
+(ansible) user01@workstation-001:~$
+```
 
 ### vagrant up
 
@@ -75,6 +97,17 @@ This will run the playbook as the **vagrant** user in a virtual machine.
 cd roles/minicond
 vagrant up
 ```
+
+### Connect to Vagrant created test VM
+
+Connect and activate a conda test environment called dev
+```shell
+vagrant ssh
+which python
+source activate dev
+which python
+```
+
 
 ## Contributors
 - Christopher Steel ([github.com/cjsteel]( https://github.com/cjsteel )
