@@ -108,9 +108,22 @@ source activate dev
 which python
 ```
 
+## License
+
+MIT
 
 ## Contributors
-- Christopher Steel ([github.com/cjsteel]( https://github.com/cjsteel )
+
+Christopher Steel  ([github.com/cjsteel]( https://github.com/cjsteel )
+Systems Administrator
+McGill Centre for Integrative Neuroscience
+Montreal Neurological Institute
+McGill University
+3801 University Street
+Montréal, QC, Canada H3A 2B4
+Tel. No. +1 514 398-2494
+E-mail: christopherDOTsteel@mcgill.ca
+[MCIN](http://mcin-cnim.ca/), [theneuro.ca](http://theneuro.ca)
 
 ## Credits and resources
 Inspiration:
